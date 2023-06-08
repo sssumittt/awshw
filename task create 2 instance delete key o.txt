@@ -1,0 +1,49 @@
+task: create 2 instance delete key of one instance and take ssh of that deleted key instance?
+steps:
+
+1. create 2 instance named as: machine 1 , machine 2
+2. stop machine 2 instance
+3. delete machine 2 .pem key 
+4. goto EBS: volumes (which is on left side) 
+5. select machine 2 
+6. (click) action 
+7. detach volume(machine2)
+8. meanwhile copy public ip of machine1
+9. take ssh on mobaxterm of (machine1)
+10. select machine2 in volumes section
+11. (click)actions 
+12. (click)attach volume
+13. instance: select machine 1 (device: as it is)
+14. select attach
+15. goto mobaxterm
+16. type lsblk
+17. you will see xvdf partition
+18. type mkdir -p /var/recovery-disk
+19. type mount -o nouuid /dev/xvdf1(your partition name) /var/recovery-disk
+20. type df -hT (you will see your mounted device)
+now
+21. type cat /home/ec2-user/.ssh/authorized_keys >> /var/recovery-disk/home/ec2-user/.ssh/authorized_keys
+now
+22. type umount /var/recovery-disk (to unmount the disk)
+23. type df -hT
+now
+24. goto volumes in instance 
+25. select volume (machine2)
+26. (click) actions 
+27. detach the volume
+28. and again (click actions)
+29. then attach volume 
+30. instance: now select machine2 (which we have deleted the key )
+31. device: /dev/xvda(xvda = it will take as root disk)
+32. goto instances
+33. turn on the instance (machine 2)
+now 
+34. copy public ip 
+35. goto mobaxterm 
+36. paste public ip in hostname 
+37. specify name: ec2-user
+38. (click) Advanced SSH settings 
+39. select use private key: here select machine 1.pem key
+40. hit enter 
+
+successfully logged in without .pem key
