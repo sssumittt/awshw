@@ -1,0 +1,27 @@
+-------- MOUNTING S3 BUCKET ON EC2 INSTANCE
+    create instance
+ select free tire eligible    ---Amazon linux 2 AMI Hvm
+ allow- all traffic control---- (ALL)
+Press create
+Go to Mobaxterm app
+Get SSH
+sudo yum updatesudo yum install s3fs-fuse  -y
+ sudo yum update
+ sudo -i (get back to  root directory)
+sudo amazon-linux-extras install epel -y 
+sudo yum install s3fs-fuse  -y
+echo  acces kety: secret key >  $ {Home} /.Sumit098
+ls -ld /root/
+- ls -la /root/
+chmod 600 /root  / .Sumit098
+ mkdir /Mountfile1
+ ls
+-create bucket & copy Bucket name 
+ s3fs my-mount-bucket /filemount -o passwd_file= $ {Home} /.Sumit098
+chmod 600 /root/.Sumit098
+mount |grep Mountfile1
+ cd /Mountfile1/
+ls
+touch file1
+ ls 
+file1
