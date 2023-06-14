@@ -1,0 +1,27 @@
+
+# Launch Instance 
+	-allow SSH & HTTP 
+
+# Go to EBS
+	- Volumes  -------< Create new Volume-------> Volume type ------>General Purpose SSD-------> - Size 30 GB ------ ----->Availability zone( Same of instance.)-------> - Tags 
+	  name & Volume-instance 
+ 
+ #Select created Volume 
+	- Actions ------->. Attach Volume. -------> Instance state (Running) ------->Device --- /dev/sdf------>Go to instance --copy public ID 
+
+# in (Mobaxterm)
+	Session -------->SSH --------->Hostname:Paste Public IP.---------->username : ec2-user ------->select Private key----------->OK  
+Next steps -------->
+                 -sudo su -------> -df -hT----- >lsblk   
+                  ------>mkfs -t xfs /dev/xvdf 
+                  -------->Allocate file system
+                   -------->file -s /dev/xvdf
+                 -------> -mkdir /mnt/eco1
+                  -------->-cd /mnt/eco1
+                  ---------> -mount /dev/xvdf /mnt/eco1
+                  --------->-mounting is done
+                   ------->df -hT
+                   To check.
+                                   
+#Instance ID  Storage 
+                Block device --------->to check if volume is mounted .
